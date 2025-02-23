@@ -47,25 +47,15 @@ $table->timestamps();
 }
 
 
-Mulai tutor 4  pemasangan category dan route
-Laravel Folder
-resource/views/back 
-‌new file category/index.blade.php 
-Laravel
-dashboard/index.blade.php
-‌copy semua code  
-category/index.blade.php
-‌paste  
-Laravel Terminal
-‌php artisan make:controller Back/CategoryController -r
-Laravel
-‌CategoryController.php 
-‌di index ketik (sama seperti Dashboard tambah beberapa) :
+CATEGORY AND CATEGORYCONTROLLER SET
+() CategoryController.php () 
+(*) di index ketik (sama seperti Dashboard tambah beberapa) :
 return view('back.category.index', [
 'categories' => Category::latest()->get() 
 ]);
-‌hapus index create, show, edit
-‌isi public function store dengan teks :
+
+(*) isi public function store dengan teks :
+use Illuminate\Support\Str;
 public function store (Request $request)
 {
 $data = $request->validate([
@@ -78,10 +68,8 @@ Category::create ($data);
 
 return back()->with('success', 'Category has been created');
 }
-Jika Str tidak terinstal maka install otomatis diatas dengan perintah
-use Illuminate\Support\Str;
-‌web.php  
-ketik dibawah dashboard controller (sama seperti DashboaController bedanya index  dan tutup [] h hilang dan get diganti jadi resource serta tambah beberapa:
+
+() web.php  () 
 Route::resource('/categories', CategoryController::class)
 ->only([ 'index', 'store', 'update', 'destroy' ]);
 
@@ -89,15 +77,14 @@ Route::resource('/categories', CategoryController::class)
 
 
 
-Mulai tutor 4  perbaikan, isi thead dan tbody
+MULAI TUTOR 4  PERBAIKAN, ISI THEAD DAN TBODY
+()dashboard/index.blade.php () 
+(*) isi bagian nav link href Dashboard dan Categories dengan {{ url('dashboard') }} dan {{ url('categories') }}
 
-‌dashboard/index.blade.php
-isi bagian nav link href Dashboard dan Categories dengan {{ url('dashboard') }} dan {{ url('categories') }}
-‌category/index.blade.php
-isi bagian nav link href Dashboard dan Categories dengan {{ url('dashboard') }} dan {{ url('categories') }}
-‌ubah judul Dashboard jadi Categories 
-‌hapus div dan canvas yang ada di bawah judul Categories 
-‌setelah hapus gantikan dengan code: 
+()category/index.blade.php () 
+(*) isi bagian nav link href Dashboard dan Categories dengan {{ url('dashboard') }} dan {{ url('categories') }}
+
+(*) setelah hapus gantikan dengan code: 
 <div class="mt-3">
 <button class="btn btn-success mb-2">Create</button>
 <table class="table table-striped table-bordered">
@@ -117,7 +104,7 @@ isi bagian nav link href Dashboard dan Categories dengan {{ url('dashboard') }} 
 </table>
 </div>
 
-‌isi <tbody></tbody> dengan:
+(*) isi <tbody></tbody> dengan:
 @foreach ($categories as $item)
 <tr>
 <td>{{ $loop->iteration }}</td>
@@ -140,73 +127,51 @@ isi bagian nav link href Dashboard dan Categories dengan {{ url('dashboard') }} 
 
 
 
-Mulai tutor 4  modal button
-WEB
-‌getbootstrap.com v5.3 
-‌docs 
-‌modal 
-‌static backdrop 
-‌copy bagian: 
-data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+MULAI TUTOR 4  MODAL BUTTON
 Laravel
-‌category/index.blade.php 
-‌tempel di depan mb-2" dan ubah bagian #staticbackdrop menjadi modalCreate kaya gini:
-<button class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#modalCreate">Create</button>
-WEB
-‌getbootstrap.com v5.3 
-‌docs 
-‌modal 
-‌static backdrop 
-‌copy bagian <! -- Modal Create --! > 
+() category/index.blade.php () 
+(*) create button
+<button class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#modalCreate">Create</button
 
-Laravel
-‌category/index.blade.php 
-‌paste diatas tutup main </main> dan ganti beberapa hal;
-‌id="staticBackdrop" ->  id="modalCreate"
-‌modal title -> Create categories 
-‌modal header -> <div class="modal-header bg-success text-white">
-‌modal body (masukkan @error('name') is-invalid @enderror setelah pada class form control lalu tambahkan tambah kan teks value="{{ old('name') }} setelah class @enderror " seperti ini)-> 
+(*) paste diatas </main> ganti ->
+id="staticBackdrop" ->  id="modalCreate"
+
+(*) modal title -> 
+Create categories 
+
+(*) modal header -> 
+<div class="modal-header bg-success text-white">
+
+(*) modal body -> 
 <form action="" method="post">
 @csrf
 <div class="mb-3">
 <label for="name">Name</label>
 <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"  value="{{ old('name') }}">
-</div>
-</form> 
-‌dibawah kodingan old name tadi tulis
+
 @error('name') 
 <div class="invalid-feedback">
 {{ $message }}
 </div>
 @enderror
-‌potong modal footer tempel di atas tutup form </form>
-‌uba modal footer dari ini
-<div class="modal-footer">
-<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-<button type="button" class="btn btn-primary">Understood</button>
 </div>
-(Menjadi) 
+</form> 
+
+(*) modal footer masukan ke form (</form->
 <div class="modal-footer">
 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 <button type="submit" class="btn btn-success">Save</button>
 </div>
-‌form action pada modal body diisi dengan
+
+(*) form action ->
 <form action="{{ url('categories') }}" method="post">
 @csrf
 
 
 
-Mulai tutor 4  validasi
-Laravel
-WEB
-‌laravel.com (v10) 
-‌ketik validation 
-‌displaying the validation errors 
-‌copy bagian @if sampai @endif 
-Laravel
-‌category/index.blade.php 
-‌paste copy an tadi dibawah button Create 
-‌tambah div my-3 di bawah @if dan /div diatas @endif seperti ini;
+MULAI TUTOR 4  VALIDASI
+() category/index.blade.php () 
+(*) paste under button Create 
 @if ($errors->any())
 <div class="my-3">
 <div class="alert alert-danger">
@@ -218,31 +183,27 @@ Laravel
 </div>
 </div>
 @endif
-‌if dan endif dibawah Create copy dan paste di bawah if dan endif yang di copy tadi serta modifikasi lah menjadi seperti ini:
+
+(*) copas under and change
 @if (session('success'))
 <div class="my-3">
 <div class="alert alert-success">
-{{ session('success') }} //hapus bagian <ul> dan ganti dgn ini
+{{ session('success') }} 
 </div>
 </div>
 @endif
-‌cek judul Categories jir ada tutup div nya g 
-WEB
-‌cek
-Laravel
-‌category.php 
-‌dibawah use HasFactory; ketik: 
+
+(*) check categories title
+
+() category.php () 
+(*)Under use HasFactory; type: 
 protected $fillable = ['name', 'slug'];
-WEB
-‌cek 
 
-Mulai tutor 4 update dan delete 
-Laravel
-CategoryController 
-copy isi public function store 
-paste di public function update 
-ubah beberapa bagian:
 
+
+MULAI TUTOR 4 UPDATE DAN DELETE
+() CategoryController () 
+(*) public function update ->
 public function update (Request $request, string $id)
 {
 $data = $request->validate([ 'name' => 'required min:3' ]);
@@ -250,61 +211,61 @@ $data['slug'] = Str::slug($data['name']);
 Category::find($id)->update($data);
 return back()->with('success', 'Categories has been updated');
 }
-category/index.blade.php
-copy bagian  <! -- Modal create--! >  
-ketik ini sebelum paste
+
+() category/index.blade.php () 
+(*) copy   <! -- Modal Create--! >  
+(*) paste modal under modal
 @foreach ($categories as $item) 
-//sini 
+//paste modal here
 @endforeach
-paste dibawahnya induk modal create dan di dalam sini
-ubah beberapa code:
-id="modalCreate" -> id="modalUpdate{{ $item->id }}"
-modal title -> Update categories
-modal-body -> <div class="modal-body">
+
+(*) Change some id="modalCreate" ->
+ id="modalUpdate{{ $item->id }}"
+(*) modal title -> 
+Update categories
+(*) modal-body -> 
+<div class="modal-body">
 <form action="{{ url('categories/'.$item->id) }}" method="post">
 @csrf
-Di dalam old('name') }}" Tambahkan code:
-<div class="mb-3">
-<label for="name">Name</label>
-<input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{old('name', $item->name) }}">
-Diatas @csrf tambahkan @method('PUT') 
-atas
-Di bagian judul dan tombol copy button class create bagian data bs toggle sampai modalCreate. masukan di button class Edit dan button class Delete. ganti model create jadi $modalUpdate{{ $item->id }} dan $modalDelete {{ $item->id }} kaya gini:
+(*) in old('name') }}" Add code:
+value="{{old('name', $item->name) }}">
+
+(*) at the up @csrf add @method('PUT') 
+
+()up() 
+(*)at title categories and create button 
 Edit
 <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalUpdate{{ $item->id }}{{ $item->id }}">Edit</button>
 Delete
-<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $item->id}}{{ $item->id}}{{ $item->id }}">Delete</button>
-cek 
-category/index.blade.php
- copy bagian  <! -- Modal create--! >  
-paste dibawahnya induk modal create
+<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $item->id}}{{ $item->id}}{{ $item->id}}">Delete</button>
+
+()cek () 
+
+() category/index.blade.php() 
+(*) copy   <! -- Modal Update--! >  
+(*) paste modal under modal
 ubah beberapa:
-id -> modalDelete
-bg-success (diatas Update categories) -> bg-danger
-update categories -> Delete categories
-@method('PUT') -> @method('DELETE')
-<div class="mb-3"> -> hapus isinya saja gantikan dengan 
+(*)id -> 
+modalDelete
+(*) bg-success (at the above Update categories) -> 
+bg-danger
+(*)update categories -> 
+Delete categories
+(*)@method('PUT') -> 
+@method('DELETE')
+(*) <div class="mb-3"> -> delete the in code chance to
 <div class="mb-3">
 <p>Are you sure want to delete category with, name <strong>{{ $item->name }}</strong>delete..?</p>
 </div>
-ubah button Close dan Save  menjadi:
+(*) Change button Close and Save to:
 <div class="modal-footer">
 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
 <button type="submit" class="btn btn-danger">Delete</button>
 </div>
-categoryController - copy bagian 3-4 di public function update - paste dan ubah beberapa di public function destroy seperti ini:
-Dari
-public function destroy(string $id)
-{
-Category::find($id)->update($data);
-return back()->with('success', 'Categories has been updated');
-}
-Menjadi
+()categoryController()
+(*)copy the 3-4 code in public function update paste and change some in public function destroy:
 public function destroy(string $id)
 {
 Category::find($id)->delete();
 return back()->with('success', 'Categories has been deleted');
 }
-
-
-
