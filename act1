@@ -1,126 +1,25 @@
-WEB Laravel 
-‌buka laravel versi 10 lalu copy
-CM 
-‌ubah lokasi ke htdocs 
-‌paste copyan tadi 
-‌ubah nama app-name jadi nama project
-
-Sementera menginstal beralih ke Laravel lalu install beberapa pluginsplugins
-
-Laravel
-‌install plugins 
-‌php intelephenes - intellisense
+PLUGIN
+‌php intelephenes
+php intellisense
 ‌php (DEVSENSE dev) 
 ‌laravel blade snippets 
 ‌laravel extensions pack 
 ‌composer
-‌tailwind CSS intelliSense  
-‌alpine js 
-‌livewire language support 
-‌vue language features  
 
-Jika sudah selesai maka
-
-Laravel
-‌open folder
-‌cek .env
-Xampp
-‌hidupkan mysql dan apache
-CM
-‌ubah lokasi ke project yg baru di buat 
-‌php artisan serve 
-‌copy port 
-WEB
-‌paste port tadi
-
-
-
-Mulai tutor 2 pemasangan dashboard dan route
-‌// WEB opsional kayaknya cari Bootstrap template blog lalu klik yang startbootstrap.com lalu template - blog - blog home - download //cari Bootstrap template blog lalu klik yang startbootstrap.com lalu template - blog - blog home - download //
-WEB 
-‌Cari bootstrap 52
-‌example - dashboard
-‌ctrl u - copy
-Laravel Folder
-‌resource/views 
-‌new folder back - new file dashboard/index.blade.php  
-‌paste
-Laravel Terminal
-‌php artisan make:controller Back/DashboardController 
-‌buka
-Laravel
-‌DashboardController
-class DashboardController extends Controller
-{
-public function index()
-{
-return view('back.dashboard.index');
-{
-}
-‌web.php
-tulis di bawah view welcomet tutupnya jg
+DASHBOARD AND DASHBOARD CONTROLLER SET
+(‌*) ‌web.php **under welcome**
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
+BUNDLE
 
-
-Bundle
-WEB
-getbootstrap.com v5.3 
-‌docs 
-‌quick star ke 2 (include bootstrap's CSS and js) 
-‌copy bagian link bundle css
-Laravel
-dashboard/index.blade.php 
-paste gantikan link css yg ada di atas favicon
-WEB
-‌getbootstrap.com v5.3 
-‌docs 
-‌quick star ke 2 (include bootstrap's CSS and js) 
-‌copy bagian script bundle js
-Laravel
-‌dashboard/index.blade.php 
-‌paste  gantikan script yang ada
-‌// cut css style // Laravel Folder opsional kayaknya public/back new folder css - new file custom.css paste Laravel dashboard/index.blade.php panggil folder custom.css tadi dengan link. Letakkan di bawah link bundle css: <link rel="stylesheet" href="{{ asset('back/css/custom.css') }}"> //
-
-Dashboard css and js serta perapian dashboard
-Laravel Folder
-‌public/back/css 
-‌new file dashboard.css
-WEB
-‌web bootstrap 5 dashboard ctrl u
-‌cari bagian link href dashboard css di bawah style
-‌klik 
-‌ctrl a - copy
-Laravel
-‌dashboard.css 
-‌paste
-‌dashboard/index.blade.php 
-‌panggil folder dashboard.css tadi dengan link. Letakkan di bawah favicon : 
+DASHBOARD CSS AND JS
+(‌*) ‌dashboard/index.blade.php **under favicon**
 <link rel="stylesheet" href="{{ asset('back/css/dashboard.css') }}">
-WEB
-bootstrap 5 dashboard ctrl u
-cari bagian dashboard.js di bawah 
-Klik - ctrl a copy
-‌Laravel Folder public new folder back - new folder js -  new file dashboard.js paste 
-Laravel
-dashboard/index.blade.php 
-paste di script dashboard hilangkan src nya <script>isi disini</script>
-‌ubah bagian script dashboard menjadi <script src="{{ asset('back/js/dashboard.js') }}"></script>
-‌di dalam sidebarMenu hapus bagian Menu integrations sampai Menu year end sale 
-‌ubah sisanya dengan urutan Dashboard, Articles, Categories, Users dan Logout 
-‌hapus semua bagian section title
+(‌*) dashboard/index.blade.php **paste on script**
+<script>here</script>
 
-
-‌Laravel Folder resource/views/back  new folder layout - new file template.blade.php Laravel dashboard/index.blade.php cut bagian main ke atas template.blade.php paste ketik @yield('content') pada bagian akhir dashboard/index.blade.php cut bagian main ke bawah template.blade.php paste copy an tadi di bawah @yield dashboard/index.blade.php cut semua bagian ketik ini lalu paste di bagian yang kosong: @extends('back.layout.template') @section('content') (Paste copy an tadi) @endsection
-
-‌Laravel Folder resource/views/back/layout  new file sidebar.blade.php Laravel template.blade.php ketik diatas sidebarMenu: @include('back.layout.sidebar') cut sidebarMenu sidebar.blade.php  paste hapus bagian integrations sampai year end sale ubah sisanya dengan urutan Dashboard, Articles, Categories, Users dan Logout dashboard/index.blade.php hapus semua bagian section title
-
-
-Mulai tutor 3 migrasi
-Laravel terminal
-‌php artisan make:model Category -m enter
-‌php artisan make:model Article -m - enter 
-‌categories migration  
+MIGRATION
+(‌*) ‌**categories migration**  
 public function up(): void
 {
 Schema::create('categories', function (Blueprint $table) {
@@ -130,7 +29,7 @@ $table->string('slug');
 $table->timestamps();
 });
 }
-‌article migration 
+‌(‌*) **article migration**
 public function up(): void
 {
 Schema::create('articles', function (Blueprint $table) {
@@ -146,8 +45,6 @@ $table->date('publish_date');
 $table->timestamps();
 });
 }
-‌migration
-‌Check di localhost 
 
 
 Mulai tutor 4  pemasangan category dan route
@@ -193,7 +90,7 @@ Route::resource('/categories', CategoryController::class)
 
 
 Mulai tutor 4  perbaikan, isi thead dan tbody
-‌sidebar.blade.php
+
 ‌dashboard/index.blade.php
 isi bagian nav link href Dashboard dan Categories dengan {{ url('dashboard') }} dan {{ url('categories') }}
 ‌category/index.blade.php
@@ -246,7 +143,7 @@ isi bagian nav link href Dashboard dan Categories dengan {{ url('dashboard') }} 
 Mulai tutor 4  modal button
 WEB
 ‌getbootstrap.com v5.3 
-‌ocs 
+‌docs 
 ‌modal 
 ‌static backdrop 
 ‌copy bagian: 
@@ -260,8 +157,8 @@ WEB
 ‌docs 
 ‌modal 
 ‌static backdrop 
-‌copy bagian <! -- Modal --! > 
-‌Laravel Folder resource/views/back new file create-modal.blade.php open and paste category/index.blade.php diatas tutup main </main>, ketik : @include('back.category.create-modal') ) create-modal.blade.php - ganti bagian 
+‌copy bagian <! -- Modal Create --! > 
+
 Laravel
 ‌category/index.blade.php 
 ‌paste diatas tutup main </main> dan ganti beberapa hal;
@@ -269,14 +166,14 @@ Laravel
 ‌modal title -> Create categories 
 ‌modal header -> <div class="modal-header bg-success text-white">
 ‌modal body (masukkan @error('name') is-invalid @enderror setelah pada class form control lalu tambahkan tambah kan teks value="{{ old('name') }} setelah class @enderror " seperti ini)-> 
-<form action=" method="post">
+<form action="" method="post">
 @csrf
 <div class="mb-3">
 <label for="name">Name</label>
-<input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"  value="{{ old('name') }}>
+<input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"  value="{{ old('name') }}">
 </div>
 </form> 
-‌dibawah kodingan tadi tulis
+‌dibawah kodingan old name tadi tulis
 @error('name') 
 <div class="invalid-feedback">
 {{ $message }}
@@ -329,6 +226,7 @@ Laravel
 </div>
 </div>
 @endif
+‌cek judul Categories jir ada tutup div nya g 
 WEB
 ‌cek
 Laravel
@@ -336,4 +234,77 @@ Laravel
 ‌dibawah use HasFactory; ketik: 
 protected $fillable = ['name', 'slug'];
 WEB
-‌cek
+‌cek 
+
+Mulai tutor 4 update dan delete 
+Laravel
+CategoryController 
+copy isi public function store 
+paste di public function update 
+ubah beberapa bagian:
+
+public function update (Request $request, string $id)
+{
+$data = $request->validate([ 'name' => 'required min:3' ]);
+$data['slug'] = Str::slug($data['name']);
+Category::find($id)->update($data);
+return back()->with('success', 'Categories has been updated');
+}
+category/index.blade.php
+copy bagian  <! -- Modal create--! >  
+ketik ini sebelum paste
+@foreach ($categories as $item) 
+//sini 
+@endforeach
+paste dibawahnya induk modal create dan di dalam sini
+ubah beberapa code:
+id="modalCreate" -> id="modalUpdate{{ $item->id }}"
+modal title -> Update categories
+modal-body -> <div class="modal-body">
+<form action="{{ url('categories/'.$item->id) }}" method="post">
+@csrf
+Di dalam old('name') }}" Tambahkan code:
+<div class="mb-3">
+<label for="name">Name</label>
+<input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{old('name', $item->name) }}">
+Diatas @csrf tambahkan @method('PUT') 
+atas
+Di bagian judul dan tombol copy button class create bagian data bs toggle sampai modalCreate. masukan di button class Edit dan button class Delete. ganti model create jadi $modalUpdate{{ $item->id }} dan $modalDelete {{ $item->id }} kaya gini:
+Edit
+<button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalUpdate{{ $item->id }}{{ $item->id }}">Edit</button>
+Delete
+<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $item->id}}{{ $item->id}}{{ $item->id }}">Delete</button>
+cek 
+category/index.blade.php
+ copy bagian  <! -- Modal create--! >  
+paste dibawahnya induk modal create
+ubah beberapa:
+id -> modalDelete
+bg-success (diatas Update categories) -> bg-danger
+update categories -> Delete categories
+@method('PUT') -> @method('DELETE')
+<div class="mb-3"> -> hapus isinya saja gantikan dengan 
+<div class="mb-3">
+<p>Are you sure want to delete category with, name <strong>{{ $item->name }}</strong>delete..?</p>
+</div>
+ubah button Close dan Save  menjadi:
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+<button type="submit" class="btn btn-danger">Delete</button>
+</div>
+categoryController - copy bagian 3-4 di public function update - paste dan ubah beberapa di public function destroy seperti ini:
+Dari
+public function destroy(string $id)
+{
+Category::find($id)->update($data);
+return back()->with('success', 'Categories has been updated');
+}
+Menjadi
+public function destroy(string $id)
+{
+Category::find($id)->delete();
+return back()->with('success', 'Categories has been deleted');
+}
+
+
+
