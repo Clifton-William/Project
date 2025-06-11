@@ -1,0 +1,60 @@
+body{
+    background-color: rgb(99, 99, 99);
+} 
+
+.isi{
+    width: 335px;
+    background-color: #44b097;
+    margin: 100px auto;
+    padding: 10px 20px 50px 20px;
+    border-radius: 5px;
+    /* box-shadow: 0px 10px 20px 0px violet; */
+}
+
+.input{
+    width: 300px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 10px;
+}
+
+.operasi{
+    font-size: 18px;
+    appearance: none;  
+    border: none;
+    width: 205px;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+  
+
+
+.hasil{
+    display: block;
+    font-size: 18px;
+    border: none;
+    width: 120px;
+    margin: 5px auto; 
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+
+
+.hitung
+{
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-radius: 5px;
+    padding: 13px 20px;
+    font-size: 15px;
+    border-bottom: 10px salmon;
+    margin-left: 2px;
+}
+
